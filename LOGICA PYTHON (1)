@@ -1,0 +1,45 @@
+# Exigência de Código 1/6 e saida de console 1/2
+print("Bem-vindo(a) a loja de roupas da Bruna Trindade. Selecione as camisetas oversize em atacado e veja o final de sua compra!")
+
+# Exigência de Código 2/6
+valor = float(input("Digite o valor unitário da camiseta: R$ "))
+qtd = int(input("Digite a quantidade desejada: "))
+
+# Calcula o valor total sem desconto
+valor_total_sem_desconto = valor * qtd
+
+# Exigência de Código 3 e 5/6
+# Aplica a regra de desconto, valor total
+if valor_total_sem_desconto < 2500:
+    desconto_percentual = 0  
+elif valor_total_sem_desconto >= 2500 and valor_total_sem_desconto < 6000:
+    desconto_percentual = 4  
+elif valor_total_sem_desconto >= 6000 and valor_total_sem_desconto < 10000:
+    desconto_percentual = 7 
+else:
+    desconto_percentual = 11  # 11% de desconto, outro
+
+# Exigência de Código 4 de 6
+# Calcular o valor do desconto e o valor total com desconto
+valor_desconto = (desconto_percentual / 100) * valor_total_sem_desconto
+valor_total_com_desconto = valor_total_sem_desconto - valor_desconto
+
+# Exigência de Código 5/6 acimas
+
+# Exigência de Código 6 de 6
+# Exibe o resultado com comentários explicativos
+print("\nObserve o seu pedido:")
+print(f"Valor total sem desconto: R$ {valor_total_sem_desconto:.2f}")
+print(f"Desconto aplicado: {desconto_percentual}%")
+print(f"Valor do desconto: R$ {valor_desconto:.2f}")
+print(f"Valor total com desconto: R$ {valor_total_com_desconto:.2f}")
+
+# Exigência de Saída de Console 1 de 2
+# Mensagem de boas-vindas já exibida no início do programa
+
+# Exigência de Saída de Console 2 de 2
+# Verifica se o pedido recebeu desconto (quando valor_total_sem_desconto >= 2500)
+if valor_total_sem_desconto >= 2500:
+    print("\nParabéns! Você ganhou um desconto em suas compras!!")
+else:
+    print("\nSeu pedido não recebeu desconto. Para obter descontos, compre acima de R$ 2500.")
