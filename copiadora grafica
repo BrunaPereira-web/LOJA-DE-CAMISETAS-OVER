@@ -1,0 +1,75 @@
+# EXIGÊNCIA DE CÓDIGO 1 de 7 - Mensagem de boas-vindas
+print("Bem vindo(a) a Copiadora Gráfica da Bruna Trindade!")
+
+# EXIGÊNCIA DE CÓDIGO 2 de 7 - Função para escolher o serviço
+def escolha_servico():
+    while True:
+        print("\nQual o tipo de serviço deseja hoje?")
+        print("DIG - Digitalização")
+        print("ICO - Impressão Colorida")
+        print("IPB - Impressão Preto e Branco")
+        print("FOT - Fotocópia")
+        servico = input(">>").lower()
+        if servico == 'dig':
+            return 1.10, 'Digitalização'
+        elif servico == 'ico':
+            return 1.00, 'Impressão Colorida'
+        elif servico == 'ipb':
+            return 0.40, 'Impressão Preto e Branco'
+        elif servico == 'fot':
+            return 0.20, 'Fotocópia'
+        else:
+            # EXIGÊNCIA DE SAÍDA DE CONSOLE 2 de 4 - Serviço inválido
+            print("Escolha inválida, selecione um dos tipos de serviços novamente")
+
+# EXIGÊNCIA DE CÓDIGO 3 de 7 - Função para número de páginas
+def num_pagina():
+    while True:
+        try:
+            num = int(input("Digite o número de páginas: "))
+            if num >= 20000:
+                # EXIGÊNCIA DE SAÍDA DE CONSOLE 3 de 4 - Excesso de páginas
+                print("Não aceitamos tantas páginas de uma vez.")
+                print("Por favor, digite o número de páginas novamente.")
+            elif num >= 2000:
+                return int(num * 0.75), num  # 25% desconto
+            elif num >= 200:
+                return int(num * 0.80), num  # 20% desconto
+            elif num >= 20:
+                return int(num * 0.85), num  # 15% desconto
+            elif num > 0:
+                return num, num             # sem desconto
+            else:
+                print("Número inválido. Tente novamente.")
+        except:
+            # EXIGÊNCIA DE CÓDIGO 6 de 7 - Try/Except usado
+            print("Valor inválido. Digite um número inteiro.")
+
+# EXIGÊNCIA DE CÓDIGO 4 de 7 - Função para serviço extra
+def servico_extra():
+    while True:
+        print("Deseja adicionar algum outro serviço?")
+        print("1 - Encadernação Simples - R$ 15.00")
+        print("2 - Encadernação Capa Dura - R$ 40.00")
+        print("0 - Não desejo mais nada")
+        escolha = input(">>")
+        if escolha == '1':
+            return 15.00, 'Encadernação Simples'
+        elif escolha == '2':
+            return 40.00, 'Encadernação Capa Dura'
+        elif escolha == '0':
+            return 0.00, 'Sem adicional'
+        else:
+            print("Opção inválida, tente novamente com uma das opções.")
+
+# ===== CÓDIGO PRINCIPAL =====
+# (EXIGÊNCIA DE CÓDIGO 5 de 7 - total no main)
+
+preco_por_pagina, tipo_servico = escolha_servico()
+quantidade_com_desconto, paginas_originais = num_pagina()
+extra, tipo_extra = servico_extra()
+
+total = (quantidade_com_desconto * preco_por_pagina) + extra
+
+# EXIGÊNCIA DE SAÍDA DE CONSOLE 4 de 4 - Saída final correta
+print(f"Total: R$ {total:.2f} (serviço: {preco_por_pagina:.2f} * páginas: {quantidade_com_desconto} + extra: {extra:.2f})")
