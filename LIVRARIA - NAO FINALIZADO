@@ -1,0 +1,97 @@
+# EXIGÊNCIA DE CÓDIGO 1 e 8 – Mensagem de boas-vindas e comentários relevantes
+print("Bem vindos a Livraria da Bruna Trindade! >.<")
+
+# EXIGÊNCIA DE CÓDIGO 2 – Lista e variável de controle
+lista_livro = []
+id_global = 0
+
+# EXIGÊNCIA DE CÓDIGO 3 – Função para cadastrar livro
+def cadastrar_livro(id):
+    print("-------------------- MENU CADASTRAR LIVRO --------------------")
+    nome = input("Por favor insira o nome do livro: ")
+    autor = input("Por favor insira com o autor do livro: ")
+    editora = input("Por favor insira com a editora do livro: ")
+    livro = {"id": id, "nome": nome, "autor": autor, "editora": editora}
+    lista_livro.append(livro)
+
+# EXIGÊNCIA DE CÓDIGO 4 – Função para consultar livro
+def consultar_livro():
+    while True:
+        print("\n-------------------- MENU CONSULTAR LIVRO --------------------")
+        print("Escolha a opção desejada:")
+        print("1 - Consultar Todos os Livros")
+        print("2 - Consultar Livro por id")
+        print("3 - Consultar Livro(s) por autor")
+        print("4 - Retornar")
+        opcao = input(">>")
+        if opcao == "1":
+            for livro in lista_livro:
+                print(f"\nid: {livro['id']}")
+                print(f"nome: {livro['nome']}")
+                print(f"autor: {livro['autor']}")
+                print(f"editora: {livro['editora']}")
+        elif opcao == "2":
+            id_procurado = int(input("Digite o id do livro: "))
+            encontrado = False
+            for livro in lista_livro:
+                if livro["id"] == id_procurado:
+                    print(f"\nid: {livro['id']}")
+                    print(f"nome: {livro['nome']}")
+                    print(f"autor: {livro['autor']}")
+                    print(f"editora: {livro['editora']}")
+                    encontrado = True
+            if not encontrado:
+                print("Livro não encontrado.")
+        elif opcao == "3":
+            autor_procurado = input("Digite o nome do autor: ").upper()
+            encontrado = False
+            for livro in lista_livro:
+                if livro["autor"].upper() == autor_procurado:
+                    print(f"\nid: {livro['id']}")
+                    print(f"nome: {livro['nome']}")
+                    print(f"autor: {livro['autor']}")
+                    print(f"editora: {livro['editora']}")
+                    encontrado = True
+            if not encontrado:
+                print("Autor não encontrado.")
+        elif opcao == "4":
+            break
+        else:
+            print("Opção inválida")
+
+# EXIGÊNCIA DE CÓDIGO 5 – Função para remover livro
+def remover_livro():
+    while True:
+        try:
+            id_remover = int(input("Digite o id do livro a ser removido: "))
+            for livro in lista_livro:
+                if livro["id"] == id_remover:
+                    lista_livro.remove(livro)
+                    print("Livro removido com sucesso!")
+                    return
+            print("Id inválido")
+        except ValueError:
+            print("Entrada inválida. Digite um número.")
+
+# EXIGÊNCIA DE CÓDIGO 6 – Menu principal
+while True:
+    print("\n-------------------- MENU PRINCIPAL --------------------")
+    print("Escolha a opção desejada:")
+    print("1 - Cadastrar Livro")
+    print("2 - Consultar Livro(s)")
+    print("3 - Remover Livro")
+    print("4 - Sair")
+    opcao = input(">>")
+    
+    if opcao == "1":
+        id_global += 1
+        cadastrar_livro(id_global)
+    elif opcao == "2":
+        consultar_livro()
+    elif opcao == "3":
+        remover_livro()
+    elif opcao == "4":
+        print("Encerrando o programa...")
+        break
+    else:
+        print("Opção inválida")
